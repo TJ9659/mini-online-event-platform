@@ -136,6 +136,23 @@ if ($isOrganizer || $hasActiveTicket) {
 
 ---
 
+## Future Roadmap (To-Do)
+
+While the core platform is fully functional, I plan to implement the following features to further enhance the ecosystem:
+
+### Admin Dashboard
+
+* **Global Overview**: A high-level view of all platform activity (total users, active events, revenue tracking).
+* **Moderation Tools**: Ability for admins to flag, hide, or delete events that violate community guidelines.
+* **Category Management**: An interface to create and manage the event categories available to organizers.
+
+### Integrated Notifications
+
+* **In-App Notification Center**: A dedicated UI for users to see registration confirmations and event updates without leaving the site.
+* **Real-Time Updates**: Using **Laravel Reverb** or **Pusher** to notify organizers instantly when someone registers for their event.
+
+---
+
 ## Application Screenshots
 
 ### Homepage

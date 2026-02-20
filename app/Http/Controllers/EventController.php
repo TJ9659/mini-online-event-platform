@@ -109,20 +109,3 @@ class EventController extends Controller
         ]);
     }
 }
-
-// // Source - https://stackoverflow.com/a
-// // Posted by EddyTheDove, modified by community. See post 'Timeline' for change history
-// // Retrieved 2026-01-15, License - CC BY-SA 3.0
-
-// public function index(Request $request){
-//     $category = $request->input('category');
-
-//     //now get all user and services in one go without looping using eager loading
-//     //In your foreach() loop, if you have 1000 users you will make 1000 queries
-
-//     $users = User::with('services', function($query) use ($category) {
-//          $query->where('category', 'LIKE', '%' . $category . '%');
-//     })->get();
-
-//     return view('browse.index', compact('users'));
-// }
