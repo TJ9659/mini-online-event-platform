@@ -5,10 +5,9 @@ import AppearanceTabs from '@/components/AppearanceTabs.vue';
 import HeadingSmall from '@/components/HeadingSmall.vue';
 import { type BreadcrumbItem } from '@/types';
 
-import AppLayout from '@/layouts/AppLayout.vue';
+import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { edit } from '@/routes/appearance';
-import DashboardLayout from '@/layouts/DashboardLayout.vue';
 
 const breadcrumbItems: BreadcrumbItem[] = [
     {

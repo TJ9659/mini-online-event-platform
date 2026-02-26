@@ -1,24 +1,16 @@
 <script setup lang="ts">
-import { Head, router, Link, } from '@inertiajs/vue3';
-import { Camera, Calendar, Link as LinkIcon } from 'lucide-vue-next';
-import { usePage } from '@inertiajs/vue3';
-import { ToastAction } from 'reka-ui';
-import AppLayout from '@/layouts/AppLayout.vue';
-import EventCard from '@/components/event/EventCard.vue';
 import CustomDialog from '@/components/custom/CustomDialog.vue';
-import { store } from '@/actions/App/Http/Controllers/TicketController';
-import { ref } from 'vue';
-import events from '@/routes/events';
-import { computed } from 'vue';
-
-
+import EventCard from '@/components/event/EventCard.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
+import { Calendar, Camera, Link as LinkIcon } from 'lucide-vue-next';
+import { computed, ref } from 'vue';
 
 const isDialogOpen = ref(false);
 const isLoading = ref(false);
 
 const page = usePage();
 const user = computed(() => page.props.auth.user);
-
 
 const props = defineProps<{
     event: {
@@ -82,7 +74,7 @@ const handleAttendDialogOpen = () => {
 
 const handleAttend = () => {
     isLoading.value = true;
-    
+
     router.post(
         `/events/${props.event.id}/tickets`,
         {},
@@ -96,8 +88,8 @@ const handleAttend = () => {
             },
             onFinish: () => {
                 isLoading.value = false;
-            }
-        }
+            },
+        },
     );
 };
 </script>
@@ -106,16 +98,17 @@ const handleAttend = () => {
     <Head :title="event.title" />
 
     <AppLayout>
-
         <div class="mx-auto max-w-6xl">
-            <div class="flex justify-center mb-8 overflow-hidden rounded-xl">
-                <img :src="'/storage/' + event.cover_image" class="h-[200px] w-auto rounded-xl object-cover md:h-[500px]" sizes="(max-width: 1920px) 100vw, 1920px"
-                fetchpriority="high">
-                    
-                </img>
+            <div class="mb-8 flex justify-center overflow-hidden rounded-xl">
+                <img
+                    :src="'/storage/' + event.cover_image"
+                    class="h-[200px] w-auto rounded-xl object-cover md:h-[500px]"
+                    sizes="(max-width: 1920px) 100vw, 1920px"
+                    fetchpriority="high"
+                />
             </div>
 
-            <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 mb-4">
+            <div class="mb-4 grid grid-cols-1 gap-12 lg:grid-cols-3">
                 <div class="space-y-8 lg:col-span-2">
                     <section>
                         <h1
@@ -123,64 +116,82 @@ const handleAttend = () => {
                         >
                             {{ event.title }}
                         </h1>
-                        <p class="mt-4 text-lg leading-relaxed text-gray-600">
+                        <div class="mt-4 text-lg leading-relaxed text-gray-600">
                             By
                             <span class="font-bold">{{
                                 event.organizer.name
                             }}</span>
-                        </p>
+                        </div>
 
-                        <p
+                        <div
                             class="mt-4 flex items-center gap-2 text-lg leading-relaxed text-gray-600"
                         >
                             <Camera />
                             {{ event.platform_name }}
-                        </p>
+                        </div>
 
-                        <p
+                        <div
                             class="mt-4 flex items-center gap-2 text-lg leading-relaxed text-gray-600"
                         >
                             <Calendar />
                             <div>
-                            <span>{{event.formatted_date }} from {{ event.formatted_start_time }} to {{ event.formatted_end_time }}</span>
+                                <span
+                                    >{{ event.formatted_date }} from
+                                    {{ event.formatted_start_time }} to
+                                    {{ event.formatted_end_time }}</span
+                                >
                             </div>
-                        </p>
+                        </div>
 
-                        <p
+                        <div
                             v-if="event.meeting_link"
                             class="mt-4 flex items-center gap-2 text-lg leading-relaxed text-gray-600"
                         >
                             <LinkIcon />
                             {{ event.meeting_link }}
-                        </p>
+                        </div>
                     </section>
 
                     <section class="border-t pt-8">
                         <h2 class="text-2xl font-bold text-gray-900">
                             Overview
                         </h2>
-                        <p class="mt-2 text-gray-600" style="white-space: pre-line;">
+                        <p
+                            class="mt-2 text-gray-600"
+                            style="white-space: pre-line"
+                        >
                             {{ event.description }}
                         </p>
-                        <p class="mt-4 text-md leading-relaxed text-gray-600">
-                            Category: <span :href="'/categories/' + category.slug" v-for="(category, index) in event.categories" :key="category.id">
-                                <Link :href="'/categories/' + category.slug" class="hover:underline">{{category.name}}</Link>
-                                <span v-if="index < event.categories.length - 1">, </span>
+                        <div class="text-md mt-4 leading-relaxed text-gray-600">
+                            <span>Category:</span>
+                            <span
+                                :href="'/categories/' + category.slug"
+                                v-for="(category, index) in event.categories"
+                                :key="category.id"
+                            >
+                                <Link
+                                    :href="'/categories/' + category.slug"
+                                    class="hover:underline"
+                                    >{{ category.name }}</Link
+                                >
+                                <span v-if="index < event.categories.length - 1"
+                                    >,
+                                </span>
                             </span>
-                        </p>
-                        
+                        </div>
                     </section>
 
                     <section class="border-t pt-8">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+                        <h2 class="mb-4 text-2xl font-bold text-gray-900">
                             Organized by
                         </h2>
-                        <div class="flex flex-col gap-5 bg-gray-100 p-5 md:flex-row">
+                        <div
+                            class="flex flex-col gap-5 bg-gray-100 p-5 md:flex-row"
+                        >
                             <p class="font-bold">
                                 {{ event.organizer.name }}
                             </p>
                         </div>
-                        
                     </section>
                 </div>
 
@@ -197,7 +208,7 @@ const handleAttend = () => {
 
                             <button
                                 v-if="!user"
-                                class="w-full rounded-lg bg-orange-500 px-4 py-3 font-bold text-white transition hover:bg-orange-600 hover:cursor-pointer"
+                                class="w-full rounded-lg bg-orange-500 px-4 py-3 font-bold text-white transition hover:cursor-pointer hover:bg-orange-600"
                                 @click="handleAttendDialogOpen"
                             >
                                 Log in to register
@@ -205,7 +216,7 @@ const handleAttend = () => {
 
                             <button
                                 v-else-if="isOrganizer"
-                                class="w-full rounded-lg bg-gray-600 px-4 py-3 font-bold text-white cursor-default"
+                                class="w-full cursor-default rounded-lg bg-gray-600 px-4 py-3 font-bold text-white"
                                 disabled
                             >
                                 You are the Organizer
@@ -213,7 +224,7 @@ const handleAttend = () => {
 
                             <button
                                 v-else-if="hasTicket"
-                                class="w-full rounded-lg bg-gray-700 px-4 py-3 font-bold text-white cursor-default"
+                                class="w-full cursor-default rounded-lg bg-gray-700 px-4 py-3 font-bold text-white"
                                 disabled
                             >
                                 Already Registered
@@ -221,7 +232,7 @@ const handleAttend = () => {
 
                             <button
                                 v-else-if="ticketStatus === 'cancelled'"
-                                class="w-full rounded-lg bg-red-500 px-4 py-3 font-bold text-white cursor-default"
+                                class="w-full cursor-default rounded-lg bg-red-500 px-4 py-3 font-bold text-white"
                                 disabled
                             >
                                 Cancelled
@@ -229,7 +240,7 @@ const handleAttend = () => {
 
                             <button
                                 v-else-if="props.isEventFull"
-                                class="w-full rounded-lg bg-gray-600 px-4 py-3 font-bold text-white cursor-default"
+                                class="w-full cursor-default rounded-lg bg-gray-600 px-4 py-3 font-bold text-white"
                                 disabled
                             >
                                 Event full
@@ -241,7 +252,11 @@ const handleAttend = () => {
                                 @click="handleAttendDialogOpen"
                                 :disabled="isLoading"
                             >
-                                {{ isLoading ? 'Processing...' : 'Confirm Attendance' }}
+                                {{
+                                    isLoading
+                                        ? 'Processing...'
+                                        : 'Confirm Attendance'
+                                }}
                             </button>
 
                             <div class="border-t pt-4 text-sm text-gray-500">
@@ -258,26 +273,26 @@ const handleAttend = () => {
                     </div>
                 </div>
             </div>
-             <section class="border-t pt-4">
-               <h2 class="text-2xl font-bold text-gray-900 mb-4">
-                     Other events you may like
+            <section class="border-t pt-4">
+                <h2 class="mb-4 text-2xl font-bold text-gray-900">
+                    Other events you may like
                 </h2>
-            <div
+                <div
                     class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
-                    >
-                <Link
-                    :href="'/events/' + event.slug"
+                >
+                    <Link
+                        :href="'/events/' + event.slug"
                         v-for="event in similarEvents"
                         :key="event.id"
                     >
-                         <EventCard :event="event" />
-                </Link>
+                        <EventCard :event="event" />
+                    </Link>
                 </div>
-             </section>
+            </section>
         </div>
 
         <Teleport to="body">
-            <CustomDialog 
+            <CustomDialog
                 v-model:open="isDialogOpen"
                 :title="'Confirm your attendance to ' + event.title"
                 description="By attending this event, your spot will be reserved. You can view or manage your attendance later from your profile."
@@ -285,6 +300,5 @@ const handleAttend = () => {
                 :loading="isLoading"
             />
         </Teleport>
-
     </AppLayout>
 </template>

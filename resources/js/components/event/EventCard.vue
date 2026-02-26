@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
-event: {
-       id: number;
+    event: {
+        id: number;
         title: string;
         slug: string;
         description: string;
@@ -10,7 +10,7 @@ event: {
         formatted_date: string;
         formatted_start_time: string;
         capacity: number;
-    }
+    };
 }>();
 </script>
 

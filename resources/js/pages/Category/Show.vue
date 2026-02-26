@@ -67,42 +67,42 @@ const handleSort = (event: Event) => {
 <template>
     <Head title="{{" props.category.name }} />
     <AppLayout>
-            <div class="mx-auto max-w-6xl">
-                <section class="mb-6">
-                    <h1 class="pb-5 text-3xl font-bold">
-                        All events related to {{ props.category.name }}
-                    </h1>
-                    <div class="text-md flex flex-row gap-3 pb-5">
-                        <p>Sort by:</p>
-                        <select
-                            @change="handleSort"
-                            :value="props.filters.sort || 'upcoming'"
-                            class="rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm"
-                        >
-                            <option
-                                v-for="filter in filterOptions"
-                                :key="filter.value"
-                                :value="filter.value"
-                            >
-                                {{ filter.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <div
-                        class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+        <div class="mx-auto max-w-6xl">
+            <section class="mb-6">
+                <h1 class="pb-5 text-3xl font-bold">
+                    All events related to {{ props.category.name }}
+                </h1>
+                <div class="text-md flex flex-row gap-3 pb-5">
+                    <p>Sort by:</p>
+                    <select
+                        @change="handleSort"
+                        :value="props.filters.sort || 'upcoming'"
+                        class="rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:text-sm"
                     >
-                        <Link
-                            :href="'/events/' + event.slug"
-                            v-for="event in props.events.data"
-                            :key="event.id"
+                        <option
+                            v-for="filter in filterOptions"
+                            :key="filter.value"
+                            :value="filter.value"
                         >
-                            <EventCard :event="event" />
-                        </Link>
-                    </div>
-                    <div class="flex justify-center">
-                        <Pagination :links="props.events.links" />
-                    </div>
-                </section>
-            </div>
+                            {{ filter.name }}
+                        </option>
+                    </select>
+                </div>
+                <div
+                    class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+                >
+                    <Link
+                        :href="'/events/' + event.slug"
+                        v-for="event in props.events.data"
+                        :key="event.id"
+                    >
+                        <EventCard :event="event" />
+                    </Link>
+                </div>
+                <div class="flex justify-center">
+                    <Pagination :links="props.events.links" />
+                </div>
+            </section>
+        </div>
     </AppLayout>
 </template>

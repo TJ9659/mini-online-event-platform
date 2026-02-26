@@ -32,7 +32,10 @@ const emit = defineEmits(['update:open', 'confirm']);
                 <Button variant="ghost" @click="emit('update:open', false)">
                     Cancel
                 </Button>
-                <Button class="text-white bg-orange-400 hover:bg-orange-500" @click="emit('confirm')">
+                <Button
+                    class="bg-orange-400 text-white hover:bg-orange-500"
+                    @click="emit('confirm')"
+                >
                     <Spinner v-if="loading" />
                     Confirm
                 </Button>

@@ -4,7 +4,6 @@ import EventCard from '@/components/event/EventCard.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 
-
 const filterOptions = [
     {
         name: 'Upcoming',
@@ -19,8 +18,6 @@ const filterOptions = [
         value: 'alp',
     },
 ];
-
-
 
 const props = defineProps<{
     events: {

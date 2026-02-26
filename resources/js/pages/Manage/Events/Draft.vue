@@ -110,9 +110,10 @@ const handleDelete = (eventId: number) => {
                     </div>
                 </div>
 
-
                 <div v-if="events.data.length === 0">
-                    <p class="text-lg text-gray-500">You currently have no drafts.</p>
+                    <p class="text-lg text-gray-500">
+                        You currently have no drafts.
+                    </p>
                 </div>
 
                 <div
@@ -218,7 +219,7 @@ const handleDelete = (eventId: number) => {
                                             @click="
                                                 handleDeleteDialogOpen(event)
                                             "
-                                            class="text-red-600 hover:text-red-900 hover:cursor-pointer"
+                                            class="text-red-600 hover:cursor-pointer hover:text-red-900"
                                             title="Delete Event"
                                         >
                                             <Trash class="size-5" />

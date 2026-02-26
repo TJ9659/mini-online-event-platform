@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { show } from '@/actions/App/Http/Controllers/CategoryController';
 import EventCard from '@/components/event/EventCard.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import * as LucideIcons from 'lucide-vue-next';
-import { show } from '@/actions/App/Http/Controllers/CategoryController';
 
 const props = defineProps<{
     upcomingEvents: Array<{
@@ -62,7 +62,7 @@ const props = defineProps<{
                         class="group flex flex-col items-center"
                     >
                         <div
-                            class="flex aspect-square md:w-24 w-16  items-center justify-center rounded-full border border-gray-200 transition-all group-hover:border-indigo-200 group-hover:bg-indigo-50"
+                            class="flex aspect-square w-16 items-center justify-center rounded-full border border-gray-200 transition-all group-hover:border-indigo-200 group-hover:bg-indigo-50 md:w-24"
                         >
                             <component
                                 :is="(LucideIcons as any)[category.icon]"

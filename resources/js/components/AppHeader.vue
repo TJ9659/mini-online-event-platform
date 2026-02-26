@@ -22,16 +22,9 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '@/components/ui/tooltip';
 import UserMenuContent from '@/components/UserMenuContent.vue';
 import { useActiveUrl } from '@/composables/useActiveUrl';
 import { getInitials } from '@/composables/useInitials';
-import { toUrl } from '@/lib/utils';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import type { InertiaLinkProps } from '@inertiajs/vue3';
 import { Link, router, usePage } from '@inertiajs/vue3';
@@ -181,10 +174,7 @@ const switchToSubMenu = (items: NavItem[]) => {
                             </div>
 
                             <div class="flex h-full flex-1 flex-col py-2">
-                                <nav
-                                    v-if="currentMobileView"
-                                    class="space-y-1"
-                                >
+                                <nav v-if="currentMobileView" class="space-y-1">
                                     <template
                                         v-for="item in mainNavItems"
                                         :key="item.title"

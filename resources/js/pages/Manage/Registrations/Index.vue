@@ -67,7 +67,7 @@ const closeModal = () => {
     <Head title="Manage Events" />
 
     <DashboardLayout :breadcrumbs="breadcrumbItems">
-       <div class="min-w-0 flex-1">
+        <div class="min-w-0 flex-1">
             <div class="mx-auto max-w-6xl p-4 sm:p-8">
                 <div
                     class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
@@ -75,7 +75,6 @@ const closeModal = () => {
                     <h1 class="text-2xl font-bold text-gray-900">
                         Registrations for All Events
                     </h1>
-
 
                     <div
                         class="flex items-center rounded-lg border border-gray-300 bg-white px-3 py-1 focus-within:ring-2 focus-within:ring-orange-500"
@@ -96,7 +95,10 @@ const closeModal = () => {
                     </div>
                 </div>
                 <div v-if="events.data.length === 0">
-                    <p class="text-lg text-gray-500">You have not created an event, create one to view registrations!</p>
+                    <p class="text-lg text-gray-500">
+                        You have not created an event, create one to view
+                        registrations!
+                    </p>
                 </div>
 
                 <div
@@ -188,7 +190,7 @@ const closeModal = () => {
                                             @click="
                                                 openRegistrationsModal(event)
                                             "
-                                            class="text-gray-400 hover:text-gray-600 hover:cursor-pointer"
+                                            class="text-gray-400 hover:cursor-pointer hover:text-gray-600"
                                             title="View Event Registrations"
                                         >
                                             <Eye class="size-5" />
@@ -207,7 +209,12 @@ const closeModal = () => {
         </div>
 
         <Teleport to="body">
-            <AttendeesListModal v-if="selectedEvent && isModalOpen" :is-open="isModalOpen" :selected-event="selectedEvent" @close-modal="closeModal"/>
+            <AttendeesListModal
+                v-if="selectedEvent && isModalOpen"
+                :is-open="isModalOpen"
+                :selected-event="selectedEvent"
+                @close-modal="closeModal"
+            />
         </Teleport>
     </DashboardLayout>
 </template>

@@ -5,7 +5,7 @@ import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import { BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { Edit, Eye, Search, Trash } from 'lucide-vue-next';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 
 interface Event {
     id: number;
@@ -47,12 +47,11 @@ const props = defineProps<{
     filters: { search?: string; sort?: string };
 }>();
 
-
 const selectedSort = ref(props.filters.sort || 'upcoming');
 const searchQuery = ref(props.filters.search || '');
-const selectedEvent = ref<Event | null>(null)
+const selectedEvent = ref<Event | null>(null);
 const isDeleteDialogOpen = ref(false);
-const isLoading = ref(false)
+const isLoading = ref(false);
 
 const handleSort = () => {
     router.get(
@@ -67,8 +66,6 @@ const handleSort = () => {
         },
     );
 };
-
-
 
 const handleSearch = () => {
     router.get(
@@ -146,7 +143,7 @@ const handleDelete = (eventId: number) => {
                     <select
                         @change="handleSort"
                         v-model="selectedSort"
-                        class="rounded-md border-1 border-gray-300 shadow-sm sm:text-sm p-2 hover:border-orange-400 hover:border-1.5 transition"
+                        class="hover:border-1.5 rounded-md border-1 border-gray-300 p-2 shadow-sm transition hover:border-orange-400 sm:text-sm"
                     >
                         <option
                             v-for="filter in filterOptions"
@@ -158,12 +155,27 @@ const handleDelete = (eventId: number) => {
                     </select>
                 </div>
 
-                <div v-if="events.data.length === 0 && (props.filters.sort === 'upcoming' || !props.filters.sort)">
-                    <p class="text-lg text-gray-500">You have not created an event, create one now!</p>
+                <div
+                    v-if="
+                        events.data.length === 0 &&
+                        (props.filters.sort === 'upcoming' ||
+                            !props.filters.sort)
+                    "
+                >
+                    <p class="text-lg text-gray-500">
+                        You have not created an event, create one now!
+                    </p>
                 </div>
 
-                <div v-else-if="events.data.length === 0 && props.filters.sort === 'past'">
-                    <p class="text-lg text-gray-500">You have no past events.</p>
+                <div
+                    v-else-if="
+                        events.data.length === 0 &&
+                        props.filters.sort === 'past'
+                    "
+                >
+                    <p class="text-lg text-gray-500">
+                        You have no past events.
+                    </p>
                 </div>
 
                 <div
@@ -269,7 +281,7 @@ const handleDelete = (eventId: number) => {
                                             @click="
                                                 handleDeleteDialogOpen(event)
                                             "
-                                            class="text-red-600 hover:text-red-900 hover:cursor-pointer" 
+                                            class="text-red-600 hover:cursor-pointer hover:text-red-900"
                                             title="Delete Event"
                                         >
                                             <Trash class="size-5" />

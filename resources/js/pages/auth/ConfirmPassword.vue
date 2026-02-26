@@ -42,7 +42,6 @@ import { Form, Head } from '@inertiajs/vue3';
                         class="w-full bg-orange-400 hover:bg-orange-500"
                         :disabled="processing"
                         data-test="confirm-password-button"
-                        
                     >
                         <Spinner v-if="processing" />
                         Confirm Password
