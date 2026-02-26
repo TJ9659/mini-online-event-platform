@@ -40,7 +40,7 @@ The event logic of the application was tested. Used Pest to ensure critical path
 
 ```bash
 # Run the test suite
-php artisan test
+php artisan test tests/Feature/EventTest.php
 
 ```
 
@@ -62,7 +62,7 @@ What was tested:
 
 ```bash
 composer install
-npm install && npm run dev
+npm install
 
 ```
 
@@ -79,6 +79,13 @@ php artisan storage:link
 
 ```bash
 php artisan migrate --seed
+
+```
+
+4. Run Application:
+
+```bash
+composer run dev
 
 ```
 
