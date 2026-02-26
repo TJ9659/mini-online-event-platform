@@ -57,7 +57,7 @@ const props = defineProps<{
                 >
                     <Link
                         :href="show(category)"
-                        v-for="category in categories"
+                        v-for="category in props.categories"
                         :key="category.id"
                         class="group flex flex-col items-center"
                     >
@@ -88,7 +88,7 @@ const props = defineProps<{
                 >
                     <Link
                         :href="'/events/' + event.slug"
-                        v-for="event in featuredEvents"
+                        v-for="event in props.featuredEvents"
                         :key="event.id"
                     >
                         <EventCard :event="event" />
@@ -103,7 +103,7 @@ const props = defineProps<{
                 >
                     <Link
                         :href="'/events/' + event.slug"
-                        v-for="event in upcomingEvents"
+                        v-for="event in props.upcomingEvents"
                         :key="event.id"
                     >
                         <EventCard :event="event" />

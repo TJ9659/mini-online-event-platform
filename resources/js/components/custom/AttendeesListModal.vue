@@ -23,7 +23,7 @@ const updateOpen = (val: boolean) => {
         <DialogContent class="sm:max-w-2xl">
             <DialogHeader>
                 <DialogTitle class="text-xl font-bold">
-                    {{ selectedEvent?.title }} - Attendees
+                    {{ props.selectedEvent?.title }} - Attendees
                 </DialogTitle>
             </DialogHeader>
 
@@ -40,7 +40,7 @@ const updateOpen = (val: boolean) => {
                     </thead>
                     <tbody class="divide-y divide-gray-100">
                         <tr
-                            v-for="ticket in selectedEvent?.tickets"
+                            v-for="ticket in props.selectedEvent?.tickets"
                             :key="ticket.id"
                             class="transition-colors hover:bg-gray-50"
                         >
@@ -62,7 +62,7 @@ const updateOpen = (val: boolean) => {
                                 >
                             </td>
                         </tr>
-                        <tr v-if="!selectedEvent?.tickets?.length">
+                        <tr v-if="!props.selectedEvent?.tickets?.length">
                             <td
                                 colspan="2"
                                 class="py-12 text-center text-gray-400"

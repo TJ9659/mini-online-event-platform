@@ -25,8 +25,9 @@ defineProps<{
                     'border-orange-500 bg-orange-500 text-white': link.active,
                 }"
                 :href="link.url"
-                v-html="link.label"
-            />
+            >
+                <span v-html="link.label"></span>
+            </Link>
         </template>
     </div>
 </template>
